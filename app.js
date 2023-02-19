@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-const uri = "mongodb+srv://DJ0212:devansh%400212@cluster0.djsnamb.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://DJ0212:devansh%400212@cluster0.djsnamb.mongodb.net/todolistDB";
 mongoose.connect(uri, () => {
   console.log("DB connected!")
 });
@@ -122,7 +122,7 @@ const List = mongoose.model("List", listSchema)
 // });
 
 app.get("/:vari", function (req, res) {
-  const customListName = _.capatalize(req.params.vari);
+  const customListName = _.capitalize(req.params.vari);
   List.findOne({ name: customListName }, function (err, foundlist) {
     if (!err) {
       if (!foundlist) {
